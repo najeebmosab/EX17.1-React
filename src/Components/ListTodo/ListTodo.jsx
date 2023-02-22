@@ -1,5 +1,34 @@
-import "./ListTodo.css"
+import "./ListTodo.css";
+// import '@fortawesome/fontawesome-free/css/all.css';
+
 function ListTodo(props) {
+    function deleteItem(id) {
+        const localStoregeList = localStorage.getItem("todoList");
+        console.log(localStoregeList);
+        const data = JSON.parse(localStoregeList);
+        const newItems = data.filter((item) => item.id !== id);
+        console.log(newItems);
+        localStorage.setItem("todoList", JSON.stringify(newItems));
+        props.getItem();
+    }
+    function updateItem(id) {
+        const localStoregeList = localStorage.getItem("todoList");
+        console.log(localStoregeList);
+        const data = JSON.parse(localStoregeList);
+        const update = data.find((item) => item.id === id);
+        console.log(update);
+        update.data = props.updateItem;
+        console.log(update);
+
+        const newItems = data.filter((item) => item.id !== id);
+        console.log(newItems);
+        newItems.push(update)
+        console.log(newItems);
+
+        localStorage.setItem("todoList", JSON.stringify(newItems));
+        props.getItem();
+
+    }
     function showData() {
         return (<>
             <ul>
@@ -8,7 +37,18 @@ function ListTodo(props) {
                         (el) => {
                             return (<>
                                 <li key={el.id}>
-                                    {el.data}
+                                    <div className="listItem">
+                                        <button onClick={() => {
+                                            updateItem(el.id);
+                                        }}>update</button>
+                                        <h2>
+                                            {el.data}
+                                        </h2>
+                                        <button onClick={() => {
+                                            deleteItem(el.id)
+                                        }}>delete</button>
+
+                                    </div>
                                 </li>
                             </>)
                         }

@@ -5,16 +5,19 @@ import { ListTodo } from "../ListTodo/ListTodo";
 
 function TodoList() {
     const [dataList, setData] = useState([]);
+    const [updateItem, setUpdateItem] = useState("");
     useEffect(() => {
         // debugger
         getItem();
     }, [])
-
+    function updateItemHandler(data) {
+        setUpdateItem(data);
+    }
     function getItem() {
         const localStoregeList = localStorage.getItem("todoList");
         if (localStoregeList != null) {
             console.log(localStoregeList);
-            const data = JSON.parse(localStorage.getItem("todoList"));
+            const data = JSON.parse(localStoregeList);
             setData([...data]);
         }
     }
@@ -28,8 +31,8 @@ function TodoList() {
     return (
 
         <div className="containerForm">
-            <FormComponent addTodoList={AddTodoListHandler}></FormComponent>
-            <ListTodo data={dataList}></ListTodo>
+            <FormComponent updateItem={updateItemHandler} addTodoList={AddTodoListHandler}></FormComponent>
+            <ListTodo updateItem={updateItem} getItem={getItem} data={dataList}></ListTodo>
         </div>
 
     );
