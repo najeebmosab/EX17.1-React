@@ -1,5 +1,5 @@
 .containerForm{
-    width: 60%;
+    width: 50%;
     margin: auto;
     height: fit-content;
     display: flex;
@@ -12,8 +12,8 @@
     padding: 10px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    width: 100%;
     margin: 0px auto;
+    width: -webkit-fill-available;
 }
 .controlers-form div{
     width: 100%;
@@ -25,8 +25,9 @@
     width: 100%;
 }
 .controlers-form input {
-    width: 100%;
     display: block;
+    width: -webkit-fill-available;
+
 }
 
 .controlers-form button{
@@ -45,11 +46,12 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 }
-ul {
+.containerForm ul {
     list-style: none;
-    width: 100%;
+    width: -webkit-fill-available;
     margin: 0px auto;
     padding: 0px;
+    justify-content: start;
 }
 
 ul li {
@@ -58,7 +60,6 @@ ul li {
     padding: 10px;
     margin: 10px 0px;
     text-align: start;
-    width: 100%;
 }
 
 ul li .listItem{
